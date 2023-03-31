@@ -3,6 +3,8 @@ import { NavLink } from "react-router-dom";
 import { HiOutlineSearch } from "react-icons/hi";
 import { BiUserCircle } from "react-icons/bi";
 import { FaBinoculars } from "react-icons/fa";
+import LoginButton from './LoginButton';
+import LogoutButton from "./LogoutButton";
 // import { AiOutlineUser } from "react-icons/ai";
 
 const NavBar = () => {
@@ -10,16 +12,13 @@ const NavBar = () => {
     return (
         <div>
             <BarOne>
-                <NavSignIn>
-                    <SignInBox>
-                        <LoginIcon>
-                            <BiUserCircle />
-                        </LoginIcon>
-                        <LoginText>
-                            <p>Sign In</p>
-                        </LoginText>
-                    </SignInBox>
-                </NavSignIn>
+                <HeaderPhrase>
+                    <p>"What's that bird?" - Ask others in the community forum!</p>
+                </HeaderPhrase>
+                <LoginBox>
+                    <LoginButton />
+                    <LogoutButton />
+                </LoginBox>
             </BarOne>
             <BarTwo>
                 <TitleBox>
@@ -31,7 +30,7 @@ const NavBar = () => {
                 <NavContent>
                     <NavItem to="/birds">Explore Birds</NavItem>
                     <SearchBar>
-                        <SearchLabel for="BirdSearch"><HiOutlineSearch /></SearchLabel>
+                        <SearchLabel htmlFor="BirdSearch"><HiOutlineSearch /></SearchLabel>
                         <SearchInput type="text" id="BirdSearch" placeholder="Bird Lookup"/>
                     </SearchBar>
                 </NavContent>
@@ -44,35 +43,26 @@ const NavBar = () => {
 const BarOne = styled.div`
 display: flex;
 align-items: center;
-justify-content: flex-end;
+justify-content: center;
 column-gap: 5px;
 padding-right: 40px;
 height: 50px;
 background-color: whitesmoke;
+border-bottom: 2px solid gainsboro;
 `
 
-const SignInBox = styled.div`
-display: flex;
-column-gap: 5px;
+const HeaderPhrase = styled.div`
+color: gray;
+font-family: 'Helvetica', Arial, Helvetica, sans-serif;
+font-weight: bold;
 padding-top: 7px;
+padding-right: 100px;
+padding-left: 100px;
 `
 
-const LoginIcon = styled.span`
-padding-top: 2px;
-font-size: 22px;
-`
-
-const LoginText = styled.span`
-font-size: 20px;
-`
-
-const NavSignIn = styled(NavLink)`
-text-decoration: none;
-font-size: 22px;
-
-&:hover {
-    color: gray;
-}
+const LoginBox = styled.div`
+position: absolute;
+right: 40px;
 `
 
 const BarTwo = styled.div`
@@ -80,7 +70,8 @@ display: flex;
 justify-content: space-between;
 column-gap: 40px;
 height: 100px;
-margin: 0px 50px 0px 50px;
+padding: 0px 50px 0px 50px;
+border-bottom: 2px solid navy;
 `
 
 const TitleBox = styled.div`
@@ -131,7 +122,7 @@ const SearchInput = styled.input`
 height: 27px;
 width: 150px;
 border: none;
-font-size: 20px;
+font-size: 23px;
 `
 const SearchLabel = styled.label`
 align-self: center;

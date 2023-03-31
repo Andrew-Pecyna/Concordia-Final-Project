@@ -1,7 +1,13 @@
+import { useAuth0 } from "@auth0/auth0-react";
+import { useEffect } from "react";
 import styled from "styled-components";
 import NavBar from "./NavBar";
+import RegisterButton from "./RegisterButton";
 
 const LandingPage = () => {
+    // const { user } = useAuth0();
+    // console.log(user)
+
 
     return (
         <div>
@@ -11,7 +17,7 @@ const LandingPage = () => {
             <MainTextBox>
                 <MainText>Build your own birding community</MainText>
                 <Description>Log sightings, share photos, and collect birds - all in one place</Description>
-                <Button>Get Started</Button>
+                <RegisterButton />
             </MainTextBox>
         </div>
     )
@@ -20,7 +26,8 @@ const LandingPage = () => {
 
 const BannerImage = styled.div`
 background-image: url("./images/owl_in_flight.jpg");
-height: 681px;
+/* height: 681px; */
+height: 100vh;
 background-size: cover;
 background-position: right 55% top 30%;
 `
@@ -59,27 +66,6 @@ font-size: 22px;
 color: white;
 padding: 5px 20px;
 font-family: 'Helvetica', Arial, Helvetica, sans-serif;
-`
-
-const Button = styled.button`
-/* padding: 12px 40px; */
-padding: 10px 50px;
-margin-top: 30px;
-border-radius: 30px;
-font-size: 20px;
-color: white;
-background-color: transparent;
-border: 2px solid white;
-font-family: 'Helvetica', Arial, Helvetica, sans-serif;
-
-&:hover {
-    background-color: white;
-    color: dodgerblue;
-}
-
-&:active {
-    transform: scale(.99)
-}
 `
 
 export default LandingPage;

@@ -5,27 +5,21 @@ import styled from "styled-components";
 import BirdTestPage from "./BirdTestPage";
 import GlobalStyle from "./GlobalStyles";
 import LandingPage from "./LandingPage";
+import RegisterForm from "./RegisterForm";
 
 function App() {
 
   return (
     <BrowserRouter>
-      {/* <PageContainer> */}
       <GlobalStyle />
         <Routes>
           <Route path="/birds" element={<BirdTestPage />} />
           <Route path="/" element={<LandingPage />} />
+          <Route path="/login" element={<RegisterForm />} />
         </Routes>
-      {/* </PageContainer> */}
     </BrowserRouter>
   );
 }
 
-// const PageContainer = styled.div`
-// display: flex;
-// flex-direction: column;
-// margin: 0px;
-// padding: 0px;
-// `
 
 export default App;

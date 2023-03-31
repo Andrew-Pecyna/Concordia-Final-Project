@@ -17,7 +17,6 @@ const getClient = async () => {
 
 // Endpoint handlers below
 
-
 const getBirds = async (req, res) => {
     console.log(api_key)
     const options = {
@@ -39,4 +38,26 @@ const getBirds = async (req, res) => {
     }
 }
 
-module.exports = { getBirds };
+const getUser = async (request, response) => {
+    const client = await getClient();
+    
+    try {
+        await client.connect();
+        const db = client.db("birdfeed_db");
+        const { email } = request.params
+        
+        const userData = await db.collection("users").findOne({email});
+        
+
+        userData ? response.status(200).json({ status: 200, data: userData }) :
+        response.status(404).json({ status: 404, data: undefined })
+
+    } catch (error) {
+        console.log(error.message)
+    } finally {
+        await client.close();
+    }
+
+}
+
+module.exports = { getBirds, getUser };

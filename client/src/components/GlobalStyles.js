@@ -81,7 +81,7 @@ button {
   font-size: 18px;
   font-weight: bold;
   text-align: center;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   color: var(--medium-blue);
   
 }
