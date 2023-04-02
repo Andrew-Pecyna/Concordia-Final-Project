@@ -1,13 +1,23 @@
 import { useAuth0 } from '@auth0/auth0-react';
+import { useContext, useEffect } from "react";
+import { UserContext } from "../UserContext";
+import { useNavigate } from "react-router-dom"
 import styled from 'styled-components';
 import { BiUserCircle } from "react-icons/bi";
 
 const LogoutButton = () => {
     const { logout, isAuthenticated } = useAuth0();
+    const {currentUser, setCurrentUser} = useContext(UserContext)
+    const navigate = useNavigate();
 
     return (
         isAuthenticated && (
-            <Button onClick={() => logout()}>
+            <Button onClick={() => {
+                logout()
+                window.sessionStorage.removeItem("currentUser")
+                setCurrentUser(null)
+                navigate('/')
+                }}>
                 <LoginIcon><BiUserCircle /></LoginIcon>
                 <LoginText>Log Out</LoginText>
             </Button>

@@ -1,47 +1,75 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { UserContext } from "../UserContext";
 import { useNavigate } from 'react-router-dom';
 import styled from "styled-components";
 import { FaBinoculars } from "react-icons/fa";
 
 const RegisterForm = () => {
     const { user } = useAuth0();
-    const [allUsers, setAllUsers] = useState([]);
-    const [LoadStatus, setLoadStatus] = useState(false)
     const navigate = useNavigate()
 
+    const [LoadStatus, setLoadStatus] = useState(false)
+    const {currentUser, setCurrentUser} = useContext(UserContext)
+    const [formData, setFormData] = useState({})
+
     useEffect(() => {
-        const getUser = async () => {
+        const userLogin = async () => {
+
             try {
                 const userResponse = await fetch(`/api/get-user/${user.name}`, { method: "GET" });
                 const parsedData = await userResponse.json();
                 const userData = parsedData.data
-                // setAllUsers(userData.data)
-                console.log(userData)
+
                 if (userData) {
-                    navigate('/birds')
+                    console.log("old user" + userData.name)
+                    window.sessionStorage.setItem("currentUser", JSON.stringify(userData))
+                    setCurrentUser(userData)
+                    navigate('/test')
                 }
+
                 setLoadStatus(true)
 
             } catch (error) {
                 console.log(error)
             }
         }
+
         if (user) {
-            getUser();
+            userLogin();
         }
+
     }, [user]);
 
+    console.log("current user is: " + currentUser)
 
-// allUsers.map((each) => {
-//     // console.log(each)
-//     // console.log(user)
-//     if (each.email === user.email)  {
-//         navigate('/birds'); 
-//         setLoadStatus(true)
-//         return
-//     }
-// })
+    const handleChange = (event) => {
+        setFormData({...formData, [event.target.id]: event.target.value}) 
+    }
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+        try {
+            const formObject = { email: user.name, ...formData }
+
+            const newUserResponse = await fetch(`/api/post-user`,
+                {   
+                method: "POST",
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formObject)
+                })
+                const data = await newUserResponse.json();
+                if (data.status === 200) {
+                    window.sessionStorage.setItem("currentUser", JSON.stringify(data.data))
+                    setCurrentUser(data.data)
+                    navigate('/test')
+                }
+            } catch (error) {
+                console.log(error)
+            }
+
+    }
 
     return (
         !LoadStatus ? <p>Loading...</p> :
@@ -57,25 +85,25 @@ const RegisterForm = () => {
             <BannerImage>
             <Description>Cedar Waxwing</Description>
                 <FormBox>
-                    <form>
+                    <form onSubmit={handleSubmit}>
                         <FormContents>
                             <FormHeader>
                                 <p>Sign Up</p>
                             </FormHeader>
                             <InfoBox>
-                                <Label>First Name</Label>
-                                <Input></Input>
+                                <Label htmlFor="firstName">First Name</Label>
+                                <Input type="text" id="firstName" name="firstName" onChange={handleChange} required></Input>
                             </InfoBox>
                             <InfoBox>
-                                <Label>Last Name</Label>
-                                <Input></Input>
+                                <Label htmlFor="lastName">Last Name</Label>
+                                <Input type="text" id="lastName" name="lastName" onChange={handleChange} required></Input>
                             </InfoBox>
                             <InfoBox>
-                                <Label>User Name</Label>
-                                <Input></Input>
+                                <Label htmlFor="userName">User Name</Label>
+                                <Input type="text" id="userName" name="userName" onChange={handleChange} required></Input>
                             </InfoBox>
                             <BtnBox>
-                                <Button>Create an Account</Button>
+                                <Button type="submit">Create an Account</Button>
                             </BtnBox>
                         </FormContents>
                     </form>
