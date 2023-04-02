@@ -19,6 +19,7 @@ const getClient = async () => {
 // Endpoint handlers below
 
 // Returns the all bird species objects in API
+// (req, res) used because of conflict with "request" from request promise
 const getBirds = async (req, res) => {
 
     const options = {
