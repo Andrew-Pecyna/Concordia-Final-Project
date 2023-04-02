@@ -1,11 +1,9 @@
 import styled from 'styled-components';
 import { NavLink } from "react-router-dom";
 import { HiOutlineSearch } from "react-icons/hi";
-import { BiUserCircle } from "react-icons/bi";
 import { FaBinoculars } from "react-icons/fa";
 import LoginButton from './LoginButton';
 import LogoutButton from "./LogoutButton";
-// import { AiOutlineUser } from "react-icons/ai";
 
 const NavBar = () => {
 

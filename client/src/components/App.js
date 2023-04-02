@@ -6,6 +6,7 @@ import BirdTestPage from "./BirdTestPage";
 import GlobalStyle from "./GlobalStyles";
 import LandingPage from "./LandingPage";
 import RegisterForm from "./RegisterForm";
+import TestNavigate from "./TestNavigate";
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
           <Route path="/birds" element={<BirdTestPage />} />
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<RegisterForm />} />
+          <Route path="/test" element={<TestNavigate />} />
         </Routes>
     </BrowserRouter>
   );

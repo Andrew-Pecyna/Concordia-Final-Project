@@ -1,13 +1,19 @@
-import { useAuth0 } from "@auth0/auth0-react";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
+import { UserContext } from "../UserContext";
+import { useNavigate } from "react-router-dom"
 import styled from "styled-components";
 import NavBar from "./NavBar";
 import RegisterButton from "./RegisterButton";
 
 const LandingPage = () => {
-    // const { user } = useAuth0();
-    // console.log(user)
-
+    const {currentUser, setCurrentUser} = useContext(UserContext)
+    const navigate = useNavigate();
+    
+    useEffect(() => {
+        if (currentUser !== null) {
+            navigate("/test")
+        }
+    }, [])
 
     return (
         <div>
@@ -34,7 +40,7 @@ background-position: right 55% top 30%;
 
 const OwlText = styled.p`
 position: absolute;
-top: 160px;
+top: 200px;
 right: 0px;
 color: white;
 background-color: rgba(0, 0, 0, 0.5);
