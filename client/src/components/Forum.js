@@ -5,9 +5,9 @@ import NavBar from "./NavBar";
 import RegisterButton from "./RegisterButton";
 
 const Forum = () => {
-    const {currentUser, setCurrentUser} = useContext(UserContext)
+    // Context to check if user has account/access to forum - to do
+    // const {currentUser, setCurrentUser} = useContext(UserContext)
 
-    // console.log("current user is set to: " + currentUser.userName)
     return(
         <>
         <NavBar />
@@ -17,7 +17,7 @@ const Forum = () => {
                     <RegisterButton />
                 </div>
                 <RegisterBox>
-                    <p>Create an account to join the conversation and start building your bird collection! </p>
+                    <p>Create an account to join the conversation and start adding to your bird collection! </p>
                 </RegisterBox>
             </SideBar>
             <FeedWrapper>
@@ -29,6 +29,8 @@ const Forum = () => {
         </>
     )
 }
+
+// Media query to set button and feed in flex column when window shrinks - to do
 
 const MainContainer = styled.div`
 display: flex;

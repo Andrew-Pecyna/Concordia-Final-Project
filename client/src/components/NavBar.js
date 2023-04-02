@@ -1,13 +1,28 @@
 import styled from 'styled-components';
+import { useState, useEffect, useContext } from 'react';
 import { NavLink } from "react-router-dom";
-import { HiOutlineSearch } from "react-icons/hi";
 import { FaBinoculars } from "react-icons/fa";
 import LoginButton from './LoginButton';
 import LogoutButton from "./LogoutButton";
+import SearchBar from './SearchBar';
+import { BirdContext } from "../BirdContext";
 
 const NavBar = () => {
 
+    const { birds, setBirds } = useContext(BirdContext)
+    const [keyWord, setKeyWord] = useState("")
+
+        const updateKeyword = (keyWord) => {
+            const filtered = birds.filter((bird) => {
+                return bird.name.toLowerCase().includes(keyWord.toLowerCase())
+            })
+            setKeyWord(keyWord)
+            console.log(keyWord)
+            console.log(filtered)
+        }
+
     return (
+        !birds ? <p>Loading...</p> :
         <div>
             <BarOne>
                 <HeaderPhrase>
@@ -28,10 +43,7 @@ const NavBar = () => {
                 <NavContent>
                     <NavItem to="/forum">Forum</NavItem>
                     <ExploreLink to="/birds">Explore Birds</ExploreLink>
-                    <SearchBar>
-                        <SearchLabel htmlFor="BirdSearch"><HiOutlineSearch /></SearchLabel>
-                        <SearchInput type="text" id="BirdSearch" placeholder="Bird Lookup"/>
-                    </SearchBar>
+                    <SearchBar keyWord={keyWord} onChange={updateKeyword}/>
                 </NavContent>
             </BarTwo>
         </div>
@@ -124,23 +136,23 @@ border-bottom: 3px solid transparent;
 }
 `
 
-const SearchBar = styled.span`
-display: flex;
-column-gap: 7px;
-margin-bottom: 3px;
-`
+// const SearchBar = styled.span`
+// display: flex;
+// column-gap: 7px;
+// margin-bottom: 3px;
+// `
 
-const SearchInput = styled.input`
-height: 27px;
-width: 150px;
-border: none;
-font-size: 23px;
-`
-const SearchLabel = styled.label`
-align-self: center;
-font-size: 30px;
-font-weight: bold;
-padding-bottom: 0px;
-`
+// const SearchInput = styled.input`
+// height: 27px;
+// width: 150px;
+// border: none;
+// font-size: 23px;
+// `
+// const SearchLabel = styled.label`
+// align-self: center;
+// font-size: 30px;
+// font-weight: bold;
+// padding-bottom: 0px;
+// `
 
 export default NavBar;
