@@ -26,7 +26,8 @@ const NavBar = () => {
                     </BinoBox>
                 </TitleBox>
                 <NavContent>
-                    <NavItem to="/birds">Explore Birds</NavItem>
+                    <NavItem to="/forum">Forum</NavItem>
+                    <ExploreLink to="/birds">Explore Birds</ExploreLink>
                     <SearchBar>
                         <SearchLabel htmlFor="BirdSearch"><HiOutlineSearch /></SearchLabel>
                         <SearchInput type="text" id="BirdSearch" placeholder="Bird Lookup"/>
@@ -102,6 +103,19 @@ const NavItem = styled(NavLink)`
 text-decoration: none;
 font-size: 26px;
 color: black;
+margin-bottom: 10px;
+border-bottom: 3px solid transparent;
+
+&:hover {
+    border-bottom: 3px solid navy;
+}
+`
+
+const ExploreLink = styled(NavLink)`
+text-decoration: none;
+font-size: 26px;
+color: black;
+width: 146px;
 margin-bottom: 10px;
 border-bottom: 3px solid transparent;
 
