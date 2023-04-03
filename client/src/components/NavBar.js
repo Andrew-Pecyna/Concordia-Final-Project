@@ -6,20 +6,26 @@ import LoginButton from './LoginButton';
 import LogoutButton from "./LogoutButton";
 import SearchBar from './SearchBar';
 import { BirdContext } from "../BirdContext";
+import SearchList from './SearchList';
 
-const NavBar = () => {
+const NavBar = ({resetKeyWord}) => {
 
-    const { birds, setBirds } = useContext(BirdContext)
+    const { birds } = useContext(BirdContext)
     const [keyWord, setKeyWord] = useState("")
+    const [filteredSearch, setFilteredSearch] = useState("")
 
         const updateKeyword = (keyWord) => {
             const filtered = birds.filter((bird) => {
                 return bird.name.toLowerCase().includes(keyWord.toLowerCase())
             })
             setKeyWord(keyWord)
-            console.log(keyWord)
-            console.log(filtered)
+            keyWord.length === 0 ? setFilteredSearch([]) : setFilteredSearch(filtered)
         }
+
+        useEffect(() => {
+            setKeyWord("")
+            setFilteredSearch("")
+        }, [resetKeyWord])
 
     return (
         !birds ? <p>Loading...</p> :
@@ -44,6 +50,9 @@ const NavBar = () => {
                     <NavItem to="/forum">Forum</NavItem>
                     <ExploreLink to="/birds">Explore Birds</ExploreLink>
                     <SearchBar keyWord={keyWord} onChange={updateKeyword}/>
+                    <SearchWrapper>
+                        {filteredSearch && <SearchList filteredSearch={filteredSearch}/>}
+                    </SearchWrapper>
                 </NavContent>
             </BarTwo>
         </div>
@@ -136,23 +145,14 @@ border-bottom: 3px solid transparent;
 }
 `
 
-// const SearchBar = styled.span`
-// display: flex;
-// column-gap: 7px;
-// margin-bottom: 3px;
-// `
-
-// const SearchInput = styled.input`
-// height: 27px;
-// width: 150px;
-// border: none;
-// font-size: 23px;
-// `
-// const SearchLabel = styled.label`
-// align-self: center;
-// font-size: 30px;
-// font-weight: bold;
-// padding-bottom: 0px;
-// `
+// media query - switch search position with forum
+const SearchWrapper = styled.span`
+background-color: gainsboro;
+position: absolute;
+z-index: 1;
+width: 173px;
+top: 130px;
+right: 49px;
+`
 
 export default NavBar;

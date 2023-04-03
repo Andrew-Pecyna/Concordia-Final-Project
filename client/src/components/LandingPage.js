@@ -8,32 +8,13 @@ import RegisterButton from "./RegisterButton";
 
 const LandingPage = () => {
     const { currentUser, setCurrentUser } = useContext(UserContext)
-    const { birds, setBirds } = useContext(BirdContext)
+    const { birds } = useContext(BirdContext)
     const navigate = useNavigate();
 
-    useEffect(() => {
-        const getAllBirds = async () => {
-            try {
-                const birdResponse = await fetch("/birds", { method: "GET" });
-                const birdData = await birdResponse.json();
-    
-                console.log("API call")
-                console.log(birdData.data[0])
-                setBirds(birdData.data);
-    
-            } catch (error) {
-                console.log(error);
-            }
-        };
-
-        if (birds.length === 0) {
-            getAllBirds();
-        }
-    
-        }, []);
     
     useEffect(() => {
         if (currentUser !== null) {
+            // set bird context or put in get all birds
             navigate("/test")
         }
     }, [])

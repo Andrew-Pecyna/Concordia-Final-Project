@@ -18,4 +18,4 @@ const TestNavigate = () => {
     )
 }
 
-export default TestNavigate
+export default TestNavigate;

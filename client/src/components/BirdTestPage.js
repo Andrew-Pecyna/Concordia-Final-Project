@@ -7,11 +7,7 @@ import NavBar from './NavBar';
 
 const BirdTestPage = () => {
 
-    const {birds, setBirds} = useContext(BirdContext)
-    const {currentUser, setCurrentUser} = useContext(UserContext)
-
-
-        console.log(currentUser)
+    const {birds} = useContext(BirdContext)
 
         return(
             birds.length === 0 ? <p>loading...</p> :
