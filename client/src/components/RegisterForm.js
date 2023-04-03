@@ -13,6 +13,8 @@ const RegisterForm = () => {
     const {currentUser, setCurrentUser} = useContext(UserContext)
     const [formData, setFormData] = useState({})
 
+    !user && navigate('/');
+
     useEffect(() => {
         const userLogin = async () => {
 
