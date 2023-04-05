@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { HiOutlineSearch } from "react-icons/hi";
 
-const SearchBar = ({keyWord, onChange }) => {
+const SearchBar = ({ keyWord, onChange }) => {
 
     return (
         <Container>

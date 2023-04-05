@@ -62,7 +62,7 @@ left: 50px;
 border-radius: 5px;
 height: 390px;
 width: 500px;
-border: 3px solid navy;
+border: 3px solid #020B4A;
 `
 
 const MainText = styled.p`
