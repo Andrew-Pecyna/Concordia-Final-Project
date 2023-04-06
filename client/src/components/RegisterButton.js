@@ -22,6 +22,7 @@ padding: 10px 50px;
 margin-top: 30px;
 border-radius: 30px;
 font-size: 20px;
+font-weight: 400;
 color: white;
 background-color: transparent;
 border: 2px solid white;

@@ -18,19 +18,20 @@ const SideBarButton = () => {
 
 const Button = styled.button`
 /* padding: 12px 40px; */
-padding: 10px 50px;
+padding: 10px 40px;
 margin-top: 30px;
 border-radius: 30px;
 font-size: 20px;
-color: white;
-background-color: #020B4A;
+font-weight: 400;
+color: #020B4A;
+background-color: white;
 border: 2px solid #020B4A;
 font-family: 'Helvetica', Arial, Helvetica, sans-serif;
 text-transform: uppercase;
 
 &:hover {
-    background-color: white;
-    color: #020B4A;
+    background-color: #020B4A;
+    color: white;
 }
 
 &:active {

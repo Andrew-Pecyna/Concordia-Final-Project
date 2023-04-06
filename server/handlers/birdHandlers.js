@@ -133,7 +133,7 @@ const getForum = async (request, response) => {
         const db = client.db("birdfeed_db");
         
         const postData = await db.collection("forum").find().toArray();
-        console.log("handler log is: " + postData)
+        console.log("get forum posts log : " + postData)
 
         postData ? response.status(200).json({ status: 200, data: postData }) :
         response.status(404).json({ status: 404, message: "Post data does not exist", data: undefined })
@@ -144,7 +144,88 @@ const getForum = async (request, response) => {
         await client.close();
     }
 
+}
+
+// Posts all new posts to posts collection
+
+const feedPost = async (request, response) => {
+    const client = await getClient();
+    
+    try {
+        await client.connect();
+        const db = client.db("birdfeed_db");
+
+        const postData = request.body
+        const randomId = uuidv4()
+
+        const newPost = { _id: randomId, ...postData}
+        
+        await db.collection("posts").insertOne(newPost);
+
+        return response.status(200).json({ status: 200, message: "Post added to posts collection", data: newPost });
+
+    } catch (error) {
+        console.log(error.message)
+    } finally {
+        await client.close();
+    }
 
 }
 
-module.exports = { getBirds, getUser, addUser, forumPost, getForum };
+// Get all posts - to be displayed on user HomePage
+
+const getHomeFeed = async (request, response) => {
+    const client = await getClient();
+
+    try {
+        await client.connect();
+        const db = client.db("birdfeed_db");
+        
+        const postData = await db.collection("posts").find().toArray();
+        console.log("get all posts log : " + postData)
+
+        postData ? response.status(200).json({ status: 200, data: postData }) :
+        response.status(404).json({ status: 404, message: "Post data does not exist", data: undefined })
+
+    } catch (error) {
+        console.log(error.message)
+    } finally {
+        await client.close();
+    }
+
+}
+
+// Get all posts by specific user - to be displayed on user profile page
+
+const getUserFeed = async (request, response) => {
+    const client = await getClient();
+
+    try {
+        await client.connect();
+        const db = client.db("birdfeed_db");
+        // let query = request.params.userName
+        const postsCollection = db.collection("posts");
+
+        let mongoQuery = {};
+        if (request.query.userName) {
+            mongoQuery["author"] = request.params.userName;
+        }
+        // const companies = await companiesCollection.find(mongoQuery).toArray();
+
+        console.log("I WANT TO SEE THIS ONE" + mongoQuery.data)
+        
+        const userPostData = await postsCollection.find({ author: request.params.userName }).toArray();
+        console.log("get all posts log : " + userPostData)
+
+        userPostData ? response.status(200).json({ status: 200, data: userPostData }) :
+        response.status(404).json({ status: 404, message: "User post data does not exist", data: undefined })
+
+    } catch (error) {
+        console.log(error.message)
+    } finally {
+        await client.close();
+    }
+
+}
+
+module.exports = { getBirds, getUser, addUser, forumPost, getForum, feedPost, getHomeFeed, getUserFeed };
