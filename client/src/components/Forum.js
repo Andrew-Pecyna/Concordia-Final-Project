@@ -1,9 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../UserContext";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { BiHomeCircle } from "react-icons/bi";
 import NavBar from "./NavBar";
 import SideBarButton from "./SideBarButton";
-import MakePost from "./MakePost";
+import ForumPost from "./ForumPost";
 
 const Forum = () => {
     const {currentUser, setCurrentUser} = useContext(UserContext)
@@ -34,18 +36,35 @@ const Forum = () => {
         <NavBar />
         <MainContainer>
             <SideBar>
-                {!currentUser && (
+                {!currentUser
+                ? (
                     <RegisterBox>
                         <p>Create an account to join the conversation and start adding to your bird collection! </p>
                     </RegisterBox>
-                )}
+                )
+                : (
+                    <LinkBox>
+                        <StyledLink to="/userHome">
+                            <span>
+                                <BiHomeCircle />
+                            </span>
+                            <p>Home</p>
+                        </StyledLink>
+                        <StyledLink to="/userProfile">
+                            <span>
+                            </span>
+                            <p>Profile</p>
+                        </StyledLink>
+                    </LinkBox>
+                )
+                }
                 <ButtonBox>
                     <SideBarButton />
                 </ButtonBox>
             </SideBar>
             <FeedWrapper>
                 <FeedContainer>
-                    {currentUser && <MakePost fetchSwitch={fetchSwitch} setFetchSwitch={setFetchSwitch} />}
+                    {currentUser && <ForumPost fetchSwitch={fetchSwitch} setFetchSwitch={setFetchSwitch} />}
                     {forumPosts.map((each) => {
                         return (
                             <SinglePost key={each._id}>
@@ -110,6 +129,22 @@ margin: 40px 40px 0px 40px;
 padding: 25px 0px 25px 0px;
 border-bottom: 2px solid gainsboro;
 border-top: 2px solid gainsboro;
+`
+
+const LinkBox = styled.div`
+display: flex;
+flex-direction: column;
+font-size: 22px;
+row-gap: 20px;
+/* background-color: skyblue; */
+margin-top: 30px;
+padding-left: 25px;
+width: 100%;
+`
+
+const StyledLink = styled(Link)`
+display: flex;
+text-decoration: none;
 `
 
 const Img = styled.img`

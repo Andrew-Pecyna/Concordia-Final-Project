@@ -3,7 +3,7 @@ import { UserContext } from "../UserContext";
 import styled from "styled-components";
 import UploadWidget from "./UploadWidget";
 
-const MakePost = ({fetchSwitch, setFetchSwitch}) => {
+const FeedPost = ({fetchSwitch, setFetchSwitch}) => {
     const {currentUser, setCurrentUser} = useContext(UserContext)
     const [message, setMessage] = useState("")
     const [image, setImage] = useState([])
@@ -25,13 +25,13 @@ const MakePost = ({fetchSwitch, setFetchSwitch}) => {
             image: image}
 
         try {
-            const forumPostResponse = await fetch(`/api/forum-post`,
+            const feedPostResponse = await fetch(`/api/feed-post`,
                 {   
                 method: "POST",
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(postObject)
                 })
-                const data = await forumPostResponse.json();
+                const data = await feedPostResponse.json();
                 if (data.status === 200) {
                     console.log(data.message)
                 }
@@ -84,4 +84,4 @@ const Textarea = styled.textarea`
 width: 100%;
 `
 
-export default MakePost;
+export default FeedPost;

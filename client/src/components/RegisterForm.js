@@ -27,7 +27,7 @@ const RegisterForm = () => {
                     console.log("old user" + userData.name)
                     window.sessionStorage.setItem("currentUser", JSON.stringify(userData))
                     setCurrentUser(userData)
-                    navigate('/test')
+                    navigate('/userHome')
                 }
 
                 setLoadStatus(true)
@@ -65,7 +65,7 @@ const RegisterForm = () => {
                 if (data.status === 200) {
                     window.sessionStorage.setItem("currentUser", JSON.stringify(data.data))
                     setCurrentUser(data.data)
-                    navigate('/test')
+                    navigate('/userHome')
                 }
             } catch (error) {
                 console.log(error)

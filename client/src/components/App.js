@@ -8,6 +8,8 @@ import RegisterForm from "./RegisterForm";
 import TestNavigate from "./TestNavigate";
 import Forum from "./Forum";
 import BirdDetails from "./BirdDetails";
+import UserHome from "./UserHome";
+import UserProfile from "./UserProfile";
 
 function App() {
 
@@ -21,6 +23,8 @@ function App() {
           <Route path="/forum" element={<Forum />} />
           <Route path="/birds" element={<BirdTestPage />} />
           <Route path="/singleBird/:birdName" element={<BirdDetails />} />
+          <Route path="/userHome" element={<UserHome />} />
+          <Route path="/userProfile" element={<UserProfile />} />
         </Routes>
     </BrowserRouter>
   );

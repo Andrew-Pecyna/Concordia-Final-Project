@@ -13,11 +13,13 @@ const LandingPage = () => {
 
     
     useEffect(() => {
-        if (currentUser !== null) {
-            // set bird context or put in get all birds
-            navigate("/test")
+        if (currentUser) {
+            navigate("/userHome")
         }
     }, [])
+
+
+    console.log(currentUser)
 
     return (
         !birds ? <p>Loading...</p> :
