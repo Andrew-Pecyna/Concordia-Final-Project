@@ -1,7 +1,7 @@
 // Require packages
 const router = require("express").Router();
 
-const { getBirds, getUser, addUser, forumPost, getForum, feedPost, getHomeFeed, getUserFeed } = require("../handlers/birdHandlers")
+const { getBirds, getUser, addUser, forumPost, getForum, feedPost, getHomeFeed, getUserFeed, changePhoto, deletePost, deleteForumPost } = require("../handlers/birdHandlers")
 
 router.get('/birds', getBirds);
 
@@ -14,6 +14,10 @@ router.get('/api/get-forum', getForum);
 router.post('/api/feed-post', feedPost);
 router.get('/api/get-homefeed', getHomeFeed);
 
+router.delete('/api/delete-post/:post_id', deletePost);
+router.delete('/api/delete-forum-post/:post_id', deleteForumPost);
+
 router.get('/api/get-userfeed/:userName', getUserFeed);
+router.patch('/api/change-photo', changePhoto);
 
 module.exports = router;

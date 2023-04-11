@@ -6,6 +6,7 @@ import { BiHomeCircle } from "react-icons/bi";
 import NavBar from "./NavBar";
 import SideBarButton from "./SideBarButton";
 import ForumPost from "./ForumPost";
+import SinglePostForum from "./SinglePostForum";
 
 const Forum = () => {
     const {currentUser, setCurrentUser} = useContext(UserContext)
@@ -45,16 +46,17 @@ const Forum = () => {
                 : (
                     <LinkBox>
                         <StyledLink to="/userHome">
-                            <span>
+                            <HomeIcon>
                                 <BiHomeCircle />
-                            </span>
+                            </HomeIcon>
                             <p>Home</p>
                         </StyledLink>
-                        <StyledLink to="/userProfile">
+                        <ProfLink to="/userProfile">
                             <span>
+                                <SmallImg src={currentUser.profPic} />
                             </span>
                             <p>Profile</p>
-                        </StyledLink>
+                        </ProfLink>
                     </LinkBox>
                 )
                 }
@@ -64,14 +66,11 @@ const Forum = () => {
             </SideBar>
             <FeedWrapper>
                 <FeedContainer>
+                    <F>F o r u m</F>
                     {currentUser && <ForumPost fetchSwitch={fetchSwitch} setFetchSwitch={setFetchSwitch} />}
                     {forumPosts.map((each) => {
                         return (
-                            <SinglePost key={each._id}>
-                                <p>{each.author}</p>
-                                <p>{each.text}</p>
-                                <Img src={each.image} />
-                            </SinglePost>
+                            <SinglePostForum fetchSwitch={fetchSwitch} setFetchSwitch={setFetchSwitch} currentUser={currentUser} postData={each} key={each._id}/>
                         )
                     })}
                 </FeedContainer>
@@ -82,6 +81,17 @@ const Forum = () => {
 }
 
 // Media query to set button and feed in flex column when window shrinks - to do
+
+const F = styled.p`
+position: absolute;
+color: white;
+background-color: dodgerblue;
+width: 70px;
+padding: 2px 2px 2px 5px;
+top: 156px;
+opacity: 85%;
+/* left: 220px; */
+`
 
 const MainContainer = styled.div`
 display: flex;
@@ -103,6 +113,7 @@ row-gap: 15px;
 background-color: gainsboro;
 margin: 30px 50px 0px 50px;
 padding: 0px 30px;
+padding-bottom: 10px;
 width: 700px;
 min-width: 550px;
 overflow: scroll;
@@ -144,16 +155,31 @@ width: 100%;
 
 const StyledLink = styled(Link)`
 display: flex;
+margin-left: 10px;
+column-gap: 5px;
 text-decoration: none;
 `
 
-const Img = styled.img`
-width: 200px;
+const HomeIcon = styled.span`
+font-size: 24px;
 `
 
-const SinglePost = styled.div`
-border: 2px solid black;
-background-color: white;
+const ProfLink = styled(Link)`
+display: flex;
+align-items: center;
+column-gap: 7px;
+text-decoration: none;
+`
+
+const SmallImg = styled.img`
+width: 40px;
+height: 40px;
+border-radius: 50%;
+`
+
+
+const Img = styled.img`
+width: 200px;
 `
 
 export default Forum;

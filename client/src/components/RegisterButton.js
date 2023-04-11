@@ -31,7 +31,7 @@ text-transform: uppercase;
 
 &:hover {
     background-color: white;
-    color: dodgerblue;
+    color: #020B4A;
 }
 
 &:active {

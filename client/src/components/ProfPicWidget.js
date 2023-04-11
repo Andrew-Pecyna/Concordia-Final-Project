@@ -1,8 +1,8 @@
 import { useEffect, useRef } from "react";
 import styled from "styled-components";
-import { SlPicture } from "react-icons/sl";
+import { IoCameraSharp } from "react-icons/io5";
 
-const UploadWidget = ({ setImage }) => {
+const ProfPicWidget = ({ setImage }) => {
     const cloudinaryRef = useRef();
     const widgetRef = useRef();
 
@@ -22,24 +22,30 @@ const UploadWidget = ({ setImage }) => {
 
     return (
         <Button onClick={() => widgetRef.current.open()}>
-            <SlPicture />
+            <IoCameraSharp />
         </Button>
     )
 };
 
 const Button = styled.button`
-/* height: 36px; */
-font-size: 35px;
-color: gray;
-padding-bottom: 0px;
-padding-top: 5px;
-margin-bottom: 0px;
+position: relative;
+top: -30px;
+left: -20px;
+height: 20px;
+font-size: 20px;
+font-weight: 100;
+padding: 8px 10px 28px 10px;
+border: 1px solid black;
+border-radius: 50%;
 background-color: transparent;
-border: none;
 
 &:hover {
-    color: silver;
+    background-color: whitesmoke;
+}
+
+&:active {
+    transform: scale(.95);
 }
 `
 
-export default UploadWidget;
+export default ProfPicWidget;

@@ -7,6 +7,7 @@ import styled from "styled-components";
 import { BiHomeCircle } from "react-icons/bi";
 import NavBar from "./NavBar";
 import FeedPost from "./FeedPost";
+import SinglePostFeed from "./SinglePostFeed";
 
 const UserHome = () => {
 
@@ -40,6 +41,7 @@ const UserHome = () => {
     }, [fetchSwitch])
 
     console.log(currentUser)
+    console.log("example post: " + homePosts)
 
     return (
         !currentUser ? <p>Loading...</p> :
@@ -48,17 +50,18 @@ const UserHome = () => {
         <MainContainer>
             <SideBar>
                 <LinkBox>
-                    <StyledLink to="/userHome">
-                        <span>
+                    <StyledLink home={true} to="/userHome">
+                        <HomeIcon >
                             <BiHomeCircle />
-                        </span>
+                        </HomeIcon>
                         <p>Home</p>
                     </StyledLink>
-                    <StyledLink to="/userProfile">
+                    <ProfLink to="/userProfile">
                         <span>
+                            <SmallImg src={currentUser.profPic} />
                         </span>
                         <p>Profile</p>
-                    </StyledLink>
+                    </ProfLink>
                 </LinkBox>
             </SideBar>
             <FeedWrapper>
@@ -66,11 +69,7 @@ const UserHome = () => {
                     <FeedPost fetchSwitch={fetchSwitch} setFetchSwitch={setFetchSwitch} />
                     {homePosts.map((each) => {
                         return (
-                            <SinglePost key={each._id}>
-                                <p>{each.author}</p>
-                                <p>{each.text}</p>
-                                <Img src={each.image} />
-                            </SinglePost>
+                            <SinglePostFeed fetchSwitch={fetchSwitch} setFetchSwitch={setFetchSwitch} currentUser={currentUser} postData={each} key={each._id} />
                         )
                     })}
                 </FeedContainer>
@@ -100,6 +99,7 @@ row-gap: 15px;
 background-color: gainsboro;
 margin: 30px 50px 0px 50px;
 padding: 0px 30px;
+padding-bottom: 10px;
 width: 700px;
 min-width: 550px;
 overflow: scroll;
@@ -128,29 +128,30 @@ width: 100%;
 
 const StyledLink = styled(Link)`
 display: flex;
+column-gap: 5px;
+/* margin-left: 10px; */
+text-decoration: none;
+background-color: ${props => props.home ? '#d9e6f2' : 'white'};
+width: 115px;
+padding: 5px 0px 0px 12px;
+border-radius: 20px;
+`
+
+const HomeIcon = styled.span`
+font-size: 24px;
+`
+
+const ProfLink = styled(Link)`
+display: flex;
+align-items: center;
+column-gap: 7px;
 text-decoration: none;
 `
 
-const ButtonBox = styled.div`
-`
-
-const RegisterBox = styled.div`
-color: #020B4A;
-font-size: 17px;
-font-family: 'Helvetica', Arial, Helvetica, sans-serif;
-margin: 40px 40px 0px 40px;
-padding: 25px 0px 25px 0px;
-border-bottom: 2px solid gainsboro;
-border-top: 2px solid gainsboro;
-`
-
-const Img = styled.img`
-width: 200px;
-`
-
-const SinglePost = styled.div`
-border: 2px solid black;
-background-color: white;
+const SmallImg = styled.img`
+width: 40px;
+height: 40px;
+border-radius: 50%;
 `
 
 export default UserHome;
