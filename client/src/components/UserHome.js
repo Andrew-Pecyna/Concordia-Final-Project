@@ -133,8 +133,8 @@ column-gap: 5px;
 text-decoration: none;
 background-color: ${props => props.home ? '#d9e6f2' : 'white'};
 width: 115px;
-padding: 5px 0px 0px 12px;
-border-radius: 20px;
+padding: 10px 0px 5px 12px;
+border-radius: 25px;
 `
 
 const HomeIcon = styled.span`

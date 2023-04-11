@@ -56,7 +56,7 @@ const SinglePostForum = ({fetchSwitch, setFetchSwitch, currentUser, postData}) =
                 <span>
                     <InnerBox>
                         <Author>{postData.author}</Author>
-                        <Delete onClick={handleDelete} >x</Delete>        
+                        {currentUser && <Delete onClick={handleDelete} >x</Delete>}        
                     </InnerBox>
                     <Text>{postData.text}</Text>
                 </span>

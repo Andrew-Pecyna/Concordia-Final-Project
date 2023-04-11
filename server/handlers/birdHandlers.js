@@ -79,6 +79,7 @@ const addUser = async (request, response) => {
 
         const newUser = {
             _id: randomId,
+            birds: [],
             profPic: formData.profPic,
             userName: formData.userName,
             firstName: formData.firstName,
@@ -317,4 +318,29 @@ const changePhoto = async (request, response) => {
 
 }
 
-module.exports = { getBirds, getUser, addUser, forumPost, getForum, feedPost, getHomeFeed, getUserFeed, changePhoto, deletePost, deleteForumPost };
+// Posts new bird to bird array in user object
+
+const addBird = async (request, response) => {
+    const client = await getClient();
+    
+    try {
+        await client.connect();
+        const db = client.db("birdfeed_db");
+
+        const birdData = request.body.bird
+        const userData = request.body.user
+
+        await db.collection("users").updateOne({userName: userData}, {$push: {birds: birdData}})
+
+        return response.status(200).json({ status: 200, message: "Bird added to birds array in user object.", data: birdData.bird });
+
+    } catch (error) {
+        console.log(error.message)
+    } finally {
+        await client.close();
+    }
+
+}
+
+
+module.exports = { getBirds, getUser, addUser, forumPost, getForum, feedPost, getHomeFeed, getUserFeed, changePhoto, deletePost, deleteForumPost, addBird };
