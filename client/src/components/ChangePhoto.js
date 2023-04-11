@@ -26,6 +26,7 @@ const ChangePhoto = ({setProfImage, picSwitch, setPicSwitch}) => {
                 if (data.status === 200) {
                     console.log(data.message)
                     setProfImage(data.data)
+                    
                 }
 
             setImage("")
