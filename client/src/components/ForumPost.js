@@ -6,7 +6,7 @@ import UploadWidget from "./UploadWidget";
 const ForumPost = ({fetchSwitch, setFetchSwitch}) => {
     const {currentUser, setCurrentUser} = useContext(UserContext)
     const [message, setMessage] = useState("")
-    const [image, setImage] = useState([])
+    const [image, setImage] = useState("")
 
     const handleChange = (event) => {
         setMessage(event.target.value)
@@ -21,6 +21,7 @@ const ForumPost = ({fetchSwitch, setFetchSwitch}) => {
 
         const postObject = {
             author: currentUser.userName,
+            email: currentUser.email,
             text: message,
             image: image}
 
@@ -36,7 +37,7 @@ const ForumPost = ({fetchSwitch, setFetchSwitch}) => {
                     console.log(data.message)
                 }
 
-            setImage([])
+            setImage("")
             setMessage("")
             setFetchSwitch(!fetchSwitch);
             event.target.reset()
@@ -49,29 +50,27 @@ const ForumPost = ({fetchSwitch, setFetchSwitch}) => {
     return (
             !currentUser ? <p>Loading...</p> :
             <PostContainer>
-                <UserPic>Pic</UserPic>
+                <SmallImg src={currentUser.profPic} />
                 <Form onSubmit={handleSubmit}>
                     <Textarea onChange={handleChange} placeholder="Create a Post" required/>
-                    <button type="submit">POST</button>
+                    <Button type="submit">Post</Button>
                 </Form>
-                <UploadWidget setImage={setImage} />
+                {!image && <UploadWidget setImage={setImage} />}
             </PostContainer>
     )
 };
 
 const PostContainer = styled.div`
+position: sticky;
+top: 0px;
 display: flex;
 align-items: center;
 /* width: 100%; */
-column-gap: 20px;
-background-color: gray;
+column-gap: 10px;
+background-color: white;
 padding: 10px 30px;
-`
-
-const UserPic = styled.div`
-padding: 4px;
-border: 1px solid black;
-border-radius: 50%;
+border: 2px solid gainsboro;
+border-radius: 3px;
 `
 
 const Form = styled.form`
@@ -82,6 +81,32 @@ width: 100%;
 
 const Textarea = styled.textarea`
 width: 100%;
+background-color: whitesmoke;
+border: none;
+resize: none;
+`
+
+const Button = styled.button`
+height: 31px;
+/* font-family: 'Helvetica', Arial, Helvetica, sans-serif; */
+background-color: white;
+font-weight: 400;
+color: gray;
+border: 2px solid gray;
+border-radius: 3px;
+margin-top: 1px;
+
+&:hover {
+    color: white;
+    background-color: gray;
+}
+`
+
+const SmallImg = styled.img`
+width: 50px;
+height: 50px;
+border-radius: 50%;
+margin-right: 10px;
 `
 
 export default ForumPost;

@@ -79,6 +79,7 @@ const addUser = async (request, response) => {
 
         const newUser = {
             _id: randomId,
+            profPic: formData.profPic,
             userName: formData.userName,
             firstName: formData.firstName,
             lastName: formData.lastName,
@@ -195,6 +196,68 @@ const getHomeFeed = async (request, response) => {
 
 }
 
+// Deletes feed post from posts collection
+
+const deletePost = async (request, response) => {
+    const client = await getClient();
+    
+    try {
+        await client.connect();
+        const db = client.db("birdfeed_db");
+        const postsCollection = db.collection("posts");
+
+        // const deletePostData = request.body
+        // console.log(request.body)
+
+        console.log("query is : " + request.params.post_id) // this is the one
+
+        const query = { _id: request.params.post_id }
+
+        const result = await postsCollection.deleteOne(query)
+
+        if (result.deletedCount === 1) {
+            return response.status(200).json({ status: 200, message: "Post deleted"});
+        }
+
+    } catch (error) {
+        console.log(error.message)
+    } finally {
+        await client.close();
+    }
+
+}
+
+// Deletes forum post from forum collection
+
+const deleteForumPost = async (request, response) => {
+    const client = await getClient();
+    
+    try {
+        await client.connect();
+        const db = client.db("birdfeed_db");
+        const forumCollection = db.collection("forum");
+
+        // const deletePostData = request.body
+        // console.log(request.body)
+
+        console.log("query is : " + request.params.post_id) // this is the one
+
+        const query = { _id: request.params.post_id }
+
+        const result = await forumCollection.deleteOne(query)
+
+        if (result.deletedCount === 1) {
+            return response.status(200).json({ status: 200, message: "Forum post deleted"});
+        }
+
+    } catch (error) {
+        console.log(error.message)
+    } finally {
+        await client.close();
+    }
+
+}
+
 // Get all posts by specific user - to be displayed on user profile page
 
 const getUserFeed = async (request, response) => {
@@ -228,4 +291,30 @@ const getUserFeed = async (request, response) => {
 
 }
 
-module.exports = { getBirds, getUser, addUser, forumPost, getForum, feedPost, getHomeFeed, getUserFeed };
+// Patches new profile pic to user object
+
+const changePhoto = async (request, response) => {
+    const client = await getClient();
+    
+    try {
+        await client.connect();
+        const db = client.db("birdfeed_db");
+
+        const photoData = request.body
+
+        console.log("data test 1" + photoData.userName)
+        console.log("data test 1" + photoData.image)
+
+        await db.collection("users").updateOne({userName: photoData.userName}, { $set: {profPic: photoData.image}});
+
+        return response.status(200).json({ status: 200, message: "Photo was updated", data: photoData.image });
+
+    } catch (error) {
+        console.log(error.message)
+    } finally {
+        await client.close();
+    }
+
+}
+
+module.exports = { getBirds, getUser, addUser, forumPost, getForum, feedPost, getHomeFeed, getUserFeed, changePhoto, deletePost, deleteForumPost };

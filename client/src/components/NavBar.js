@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { useState, useEffect, useContext } from 'react';
+import { useParams } from 'react-router-dom';
 import { NavLink } from "react-router-dom";
 import { FaBinoculars } from "react-icons/fa";
 import LoginButton from './LoginButton';
