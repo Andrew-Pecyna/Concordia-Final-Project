@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../UserContext";
 import { useNavigate } from "react-router-dom"
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useParams } from 'react-router-dom';
 import styled from "styled-components";
 import { BiHomeCircle } from "react-icons/bi";
@@ -51,7 +51,7 @@ const UserHome = () => {
         <MainContainer>
             <SideBar>
                 <LinkBox>
-                    <StyledLink home={true} to="/userHome">
+                    <StyledLink to="/userHome" home={"true"}>
                         <HomeIcon >
                             <BiHomeCircle />
                         </HomeIcon>
@@ -127,12 +127,12 @@ padding-left: 25px;
 width: 100%;
 `
 
-const StyledLink = styled(Link)`
+const StyledLink = styled(NavLink)`
 display: flex;
 column-gap: 5px;
 /* margin-left: 10px; */
 text-decoration: none;
-background-color: ${props => props.home ? '#d9e6f2' : 'white'};
+background-color: ${props => props.home == "true" ? '#d9e6f2' : 'white'};
 width: 115px;
 padding: 10px 0px 5px 12px;
 border-radius: 25px;

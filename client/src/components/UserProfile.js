@@ -78,7 +78,7 @@ const UserProfile = () => {
                             </HomeIcon>
                             <p>Home</p>
                         </StyledLink>
-                        <ProfLink profile={true} to="/userProfile">
+                        <ProfLink profile={"true"} to="/userProfile">
                             <span>
                                 <SmallImg src={currentUser.profPic} />
                             </span>
@@ -211,7 +211,7 @@ text-decoration: none;
 width: 130px;
 padding: 5px 2px 0px 2px;
 border-radius: 25px;
-background-color: ${props => props.profile ? '#d9e6f2' : 'white'};
+background-color: ${props => props.profile == "true" ? '#d9e6f2' : 'white'};
 `
 
 const SmallImg = styled.img`

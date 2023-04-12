@@ -16,11 +16,14 @@ const BirdDetails = () => {
     const [resetKeyWord, setResetKeyWord] = useState(false)
     const birdName = useParams();
 
-    const targetBird = birds.find(item => item.name === birdName.birdName)
-
     useEffect(() => {
         setResetKeyWord(!resetKeyWord)
     }, [birdName])
+
+    if (birds.length === 0) {
+        return <p>Loading...</p>
+    }
+    const targetBird = birds.find(item => item.name === birdName.birdName)
 
     const handleClick = async () => {
 
@@ -36,6 +39,7 @@ const BirdDetails = () => {
                 const data = await addBirdResponse.json();
                 if (data.status === 200) {
                     setCurrentUser(data.data)
+                    window.sessionStorage.setItem("currentUser", JSON.stringify(data.data))
                     console.log(data.data)
                 }
 
@@ -46,6 +50,7 @@ const BirdDetails = () => {
     }
 
     console.log(currentUser)
+    console.log("target bird : " + targetBird)
 
     // const usersBirds = currentUser.birds
 
