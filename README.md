@@ -1,4 +1,4 @@
-## Concordia Web Dev Final Project ## ![badge1](https://img.shields.io/badge/Front--end-React-blue) ![badge2](https://img.shields.io/badge/Back--end-Node.js-green)
+## Concordia Web Dev Final Project ## ![badge1](https://img.shields.io/badge/Front--end-React-blue) ![badge2](https://img.shields.io/badge/Back--end-Node.js-green) ![badge1](https://img.shields.io/badge/MongoDB-important)
 
 # BirdFeed
 
