@@ -88,7 +88,6 @@ resize: none;
 
 const Button = styled.button`
 height: 31px;
-/* font-family: 'Helvetica', Arial, Helvetica, sans-serif; */
 background-color: white;
 font-weight: 400;
 color: gray;
@@ -113,7 +112,6 @@ const IconSpan = styled.span`
 display: flex;
 font-size: 32px;
 color: green;
-/* background-color: skyblue; */
 padding: 0px;
 margin: 0px;
 `

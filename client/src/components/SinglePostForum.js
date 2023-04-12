@@ -75,7 +75,6 @@ background-color: white;
 
 const ProfBox = styled.div`
 padding: 10px 10px;
-/* background-color: skyblue; */
 `
 
 const ProfImg = styled.img`
@@ -91,8 +90,6 @@ overflow: scroll;
 
 const InnerBox = styled.span`
 display: flex;
-/* width: 100%; */
-/* background-color: skyblue; */
 justify-content: space-between;
 `
 
@@ -126,7 +123,6 @@ padding: 10px 0px 0px 0px;
 `
 
 const Text = styled.p`
-/* background-color: lightgoldenrodyellow; */
 font-size: 16px;
 font-weight: 400;
 font-family: 'Helvetica', Arial, Helvetica, sans-serif;

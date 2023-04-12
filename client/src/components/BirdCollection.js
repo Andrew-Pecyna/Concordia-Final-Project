@@ -9,7 +9,6 @@ const BirdCollection = () => {
     const { currentUser, setCurrentUser } = useContext(UserContext)
     const userBirds = currentUser.birds
 
-    console.log(userBirds)
 
     return (
         <>

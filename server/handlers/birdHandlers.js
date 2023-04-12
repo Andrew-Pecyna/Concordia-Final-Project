@@ -28,14 +28,12 @@ const getBirds = async (req, res) => {
         headers: {
             'api-key': api_key
         },
-        json: true // Automatically parses the JSON string in the response
+        json: true
     };
 
     try {
         const birdResponse = await request(options)
-        // const parsedResponse = await JSON.parse(birdResponse)
-        // const birdData = parsedResponse.data
-        console.log(birdResponse)
+    
         return res.status(200).json({status: 200, data: birdResponse});
     } catch (error) {
         console.log(error)
@@ -135,7 +133,6 @@ const getForum = async (request, response) => {
         const db = client.db("birdfeed_db");
         
         const postData = await db.collection("forum").find().toArray();
-        console.log("get forum posts log : " + postData)
 
         postData ? response.status(200).json({ status: 200, data: postData }) :
         response.status(404).json({ status: 404, message: "Post data does not exist", data: undefined })
@@ -256,7 +253,6 @@ const getUserFeed = async (request, response) => {
     try {
         await client.connect();
         const db = client.db("birdfeed_db");
-        // let query = request.params.userName
         const postsCollection = db.collection("posts");
 
         let mongoQuery = {};
@@ -265,7 +261,6 @@ const getUserFeed = async (request, response) => {
         }
         
         const userPostData = await postsCollection.find({ author: request.params.userName }).toArray();
-        console.log("get all posts log : " + userPostData)
 
         userPostData ? response.status(200).json({ status: 200, data: userPostData }) :
         response.status(404).json({ status: 404, message: "User post data does not exist", data: undefined })
@@ -288,9 +283,6 @@ const changePhoto = async (request, response) => {
         const db = client.db("birdfeed_db");
 
         const photoData = request.body
-
-        console.log("data test 1" + photoData.userName)
-        console.log("data test 1" + photoData.image)
 
         await db.collection("users").updateOne({userName: photoData.userName}, { $set: {profPic: photoData.image}});
         const user = await db.collection("users").findOne({userName: photoData.userName});

@@ -43,7 +43,6 @@ const RegisterForm = () => {
 
     }, [user]);
 
-    console.log("current user is: " + currentUser)
 
     const handleChange = (event) => {
         setFormData({...formData, [event.target.id]: event.target.value}) 
@@ -214,14 +213,12 @@ padding-top: 45px;
 const Button = styled.button`
 width: 326px;
 height: 38px;
-/* background-color: white; */
 background-color: transparent;
 border: 1px solid black;
 font-family: 'Helvetica', Arial, Helvetica, sans-serif;
 font-weight: 400;
 
 &:hover {
-    /* color: gray; */
     background: rgb(0, 0, 0, 0.5);
     color: white;
 }

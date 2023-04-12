@@ -47,8 +47,6 @@ const UserProfile = () => {
 
     }, [fetchSwitch, picSwitch])
 
-    console.log(currentUser)
-
 
     return (
         <div>
@@ -111,20 +109,17 @@ const SideBar = styled.div`
 display: flex;
 flex-direction: column;
 align-items: center;
-/* row-gap: 10px; */
 width: 20%;
 min-width: 300px;
 border-right: 2px solid #020B4A;
 `
 
 const ProfBox = styled.span`
-/* background-color: skyblue; */
 margin-top: 30px;
 `
 
 const EditBox = styled.span`
 width: 175px;
-/* background-color: skyblue; */
 height: 20px;
 `
 
@@ -136,7 +131,6 @@ border: 3px solid gainsboro;
 `
 
 const ProfInfo = styled.div`
-/* background-color: lightgoldenrodyellow; */
 width: 80%;
 border-top: 2px solid gainsboro;
 padding: 5px 0px 10px 0px;
@@ -180,10 +174,8 @@ const LinkBox = styled.div`
 display: flex;
 flex-direction: column;
 justify-content: flex-end;
-/* align-items: center; */
 font-size: 22px;
 row-gap: 10px;
-/* background-color: skyblue; */
 margin-bottom: 75px;
 padding-left: 25px;
 width: 100%;
@@ -231,7 +223,6 @@ const FeedContainer = styled.div`
 display: flex;
 flex-direction: column;
 row-gap: 15px;
-/* background-color: gainsboro; */
 margin: 30px 50px 0px 50px;
 padding: 0px 30px;
 padding-bottom: 10px;
