@@ -2,4 +2,4 @@
 
 # BirdFeed
 
-!\[alt text\](https://img.shields.io/badge/Front--end-React-blue)
+(https://img.shields.io/badge/Front--end-React-blue)
