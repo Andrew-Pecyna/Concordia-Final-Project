@@ -18,9 +18,6 @@ const LandingPage = () => {
         }
     }, [])
 
-
-    console.log(currentUser)
-
     return (
         !birds ? <p>Loading...</p> :
         <div>
@@ -39,7 +36,6 @@ const LandingPage = () => {
 
 const BannerImage = styled.div`
 background-image: url("./images/owl_in_flight.jpg");
-/* height: 681px; */
 height: 100vh;
 background-size: cover;
 background-position: right 55% top 30%;
@@ -60,7 +56,6 @@ position: absolute;
 text-align: center;
 top:325px;
 left: 50px;
-/* background-color: rgba(0, 0, 0, 0.5); */
 border-radius: 5px;
 height: 390px;
 width: 500px;

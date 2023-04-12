@@ -49,10 +49,6 @@ const BirdDetails = () => {
 
     }
 
-    console.log(currentUser)
-    console.log("target bird : " + targetBird)
-
-    // const usersBirds = currentUser.birds
 
     let match = undefined
 

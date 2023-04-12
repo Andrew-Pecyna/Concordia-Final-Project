@@ -69,7 +69,6 @@ position: sticky;
 top: 0px;
 display: flex;
 align-items: center;
-/* width: 100%; */
 column-gap: 10px;
 background-color: white;
 padding: 10px 30px;
@@ -92,7 +91,6 @@ resize: none;
 
 const Button = styled.button`
 height: 31px;
-/* font-family: 'Helvetica', Arial, Helvetica, sans-serif; */
 background-color: white;
 font-weight: 400;
 color: gray;
@@ -117,7 +115,6 @@ const IconSpan = styled.span`
 display: flex;
 font-size: 32px;
 color: green;
-/* background-color: skyblue; */
 padding: 0px;
 margin: 0px;
 `

@@ -17,7 +17,6 @@ const SideBarButton = () => {
 }
 
 const Button = styled.button`
-/* padding: 12px 40px; */
 padding: 10px 40px;
 margin-top: 30px;
 border-radius: 30px;

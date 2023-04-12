@@ -17,7 +17,6 @@ const RegisterButton = () => {
 }
 
 const Button = styled.button`
-/* padding: 12px 40px; */
 padding: 10px 50px;
 margin-top: 30px;
 border-radius: 30px;

@@ -30,7 +30,6 @@ const UserHome = () => {
                 const feedData = parsedData.data
                 const recentOrder = feedData.reverse()
 
-                console.log("getHomeFeed data is : " + feedData)
                 setHomePosts(recentOrder)
 
             } catch (error) {
@@ -41,8 +40,6 @@ const UserHome = () => {
 
     }, [fetchSwitch])
 
-    console.log(currentUser)
-    console.log("example post: " + homePosts)
 
     return (
         !currentUser ? <p>Loading...</p> :
@@ -121,7 +118,6 @@ display: flex;
 flex-direction: column;
 font-size: 22px;
 row-gap: 20px;
-/* background-color: skyblue; */
 margin-top: 30px;
 padding-left: 25px;
 width: 100%;

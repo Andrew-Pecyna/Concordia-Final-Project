@@ -12,7 +12,6 @@ const ProfPicWidget = ({ setImage }) => {
         widgetRef.current = cloudinaryRef.current.createUploadWidget({
             cloudName: 'dciwywexh',
             uploadPreset: 'ytssaned'}, (error, result) => {
-            console.log("My POST : " + result.info.url)
             if (result.info.url) {
                 setImage(result.info.url)
             }

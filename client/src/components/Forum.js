@@ -81,8 +81,6 @@ const Forum = () => {
     )
 }
 
-// Media query to set button and feed in flex column when window shrinks - to do
-
 const F = styled.p`
 position: absolute;
 color: white;
@@ -91,7 +89,6 @@ width: 70px;
 padding: 2px 2px 2px 5px;
 top: 156px;
 opacity: 85%;
-/* left: 220px; */
 `
 
 const MainContainer = styled.div`
@@ -148,7 +145,6 @@ display: flex;
 flex-direction: column;
 font-size: 22px;
 row-gap: 20px;
-/* background-color: skyblue; */
 margin-top: 30px;
 padding-left: 25px;
 width: 100%;

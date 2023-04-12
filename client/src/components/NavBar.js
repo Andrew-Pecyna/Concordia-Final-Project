@@ -146,7 +146,6 @@ border-bottom: 3px solid transparent;
 }
 `
 
-// media query - switch search position with forum
 const SearchWrapper = styled.span`
 background-color: gainsboro;
 position: absolute;
