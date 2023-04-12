@@ -19,9 +19,10 @@ const Forum = () => {
                 const forumResponse = await fetch(`/api/get-forum`, { method: "GET" });
                 const parsedData = await forumResponse.json();
                 const forumData = parsedData.data
+                const recentOrder = forumData.reverse()
 
                 console.log("getForum data is : " + forumData)
-                setForumPosts(forumData)
+                setForumPosts(recentOrder)
 
             } catch (error) {
                 console.log(error)

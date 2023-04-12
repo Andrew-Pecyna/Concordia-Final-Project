@@ -15,8 +15,12 @@ const UserProfile = () => {
     const [fetchSwitch, setFetchSwitch] = useState(false)
     const [picSwitch, setPicSwitch] = useState(false)
     const [userPosts, setUserPosts] = useState([])
-    const [profImage, setProfImage] = useState("")
     const navigate = useNavigate();
+    let numSpecies = 0
+
+    if (currentUser.birds) {
+        numSpecies = currentUser.birds.length
+    }
 
     useEffect(() => {
         if (currentUser === null) {
@@ -31,8 +35,9 @@ const UserProfile = () => {
                 const feedResponse = await fetch(`/api/get-userfeed/${currentUser.userName}`, { method: "GET" });
                 const parsedData = await feedResponse.json();
                 const feedData = parsedData.data
+                const recentOrder = feedData.reverse()
 
-                setUserPosts(feedData)
+                setUserPosts(recentOrder)
 
             } catch (error) {
                 console.log(error)
@@ -40,14 +45,9 @@ const UserProfile = () => {
         }
         getUserPosts()
 
-    }, [fetchSwitch])
+    }, [fetchSwitch, picSwitch])
 
-    useEffect(() => {
-        setCurrentUser({profPic: profImage, ...currentUser})
-        console.log("new pic is : " + profImage)
-    }, [profImage])
-
-    console.log("Log in UserProfile : " + currentUser.profPic)
+    console.log(currentUser)
 
 
     return (
@@ -59,13 +59,18 @@ const UserProfile = () => {
                         <ProfImg src={currentUser.profPic} />
                     </ProfBox>
                     <EditBox>
-                        <ChangePhoto setProfImage={setProfImage} picSwitch={picSwitch} setPicSwitch={setPicSwitch} />
+                        <ChangePhoto picSwitch={picSwitch} setPicSwitch={setPicSwitch} />
                     </EditBox>
                     <ProfInfo>
                         <UserName>{currentUser.userName}</UserName>
-                        <p>Add a bio!</p>
-                        <p>Joined in April 2023</p>
+                        <P1>Add a bio!</P1>
+                        <P2>Joined in April 2023</P2>
                     </ProfInfo>
+                    <CollectionLink to="/birdCollection">
+                        <span>
+                            <p>{numSpecies} Species Observed</p>
+                        </span>
+                    </CollectionLink>
                     <LinkBox>
                         <StyledLink to="/userHome">
                             <HomeIcon>
@@ -86,7 +91,7 @@ const UserProfile = () => {
                         <FeedPost fetchSwitch={fetchSwitch} setFetchSwitch={setFetchSwitch} />
                         {userPosts.map((each) => {
                             return (
-                                <SinglePostFeed fetchSwitch={fetchSwitch} setFetchSwitch={setFetchSwitch} currentUser={currentUser} postData={each} key={each._id}/>
+                                <SinglePostFeed fetchSwitch={fetchSwitch} setFetchSwitch={setFetchSwitch} postData={each} key={each._id}/>
                             )
                         })}
                     </FeedContainer>
@@ -138,8 +143,37 @@ padding: 5px 0px 10px 0px;
 border-bottom: 2px solid gainsboro;
 `
 
+const CollectionLink = styled(Link)`
+display: flex;
+justify-content: center;
+align-items: center;
+font-size: 17px;
+border: 2px solid green;
+text-decoration: none;
+color: green;
+width: 80%;
+height: 250px;
+margin-top: 15px;
+font-family: 'Helvetica', Arial, Helvetica, sans-serif;
+
+&:hover {
+    background-color: green;
+    color: white;
+}
+`
+
 const UserName = styled.p`
 font-size: 26px;
+`
+
+const P1 = styled.p`
+font-size: 16px;
+margin: 10px 0px;
+`
+
+const P2 = styled.p`
+font-size: 16px;
+color: dimgray;
 `
 
 const LinkBox = styled.div`

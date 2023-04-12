@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../UserContext";
 import styled from "styled-components";
 import UploadWidget from "./UploadWidget";
+import { TbPhotoCheck } from "react-icons/tb";
 
 const FeedPost = ({fetchSwitch, setFetchSwitch}) => {
     const {currentUser, setCurrentUser} = useContext(UserContext)
@@ -14,10 +15,6 @@ const FeedPost = ({fetchSwitch, setFetchSwitch}) => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-
-        // if (image === "") {
-        //     setImage([])
-        // }
 
         const postObject = {
             author: currentUser.userName,
@@ -56,6 +53,9 @@ const FeedPost = ({fetchSwitch, setFetchSwitch}) => {
                     <Button type="submit">Post</Button>
                 </Form>
                 {!image && <UploadWidget setImage={setImage} />}
+                {image && <IconSpan>
+                    <TbPhotoCheck />
+                </IconSpan>}
             </PostContainer>
     )
 };
@@ -72,12 +72,6 @@ padding: 10px 30px;
 border: 2px solid gainsboro;
 border-radius: 3px;
 `
-
-// const UserPic = styled.div`
-// padding: 4px;
-// border: 1px solid black;
-// border-radius: 50%;
-// `
 
 const Form = styled.form`
 display: flex;
@@ -113,6 +107,15 @@ width: 50px;
 height: 50px;
 border-radius: 50%;
 margin-right: 10px;
+`
+
+const IconSpan = styled.span`
+display: flex;
+font-size: 32px;
+color: green;
+/* background-color: skyblue; */
+padding: 0px;
+margin: 0px;
 `
 
 export default FeedPost;

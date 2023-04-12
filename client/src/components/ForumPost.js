@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../UserContext";
 import styled from "styled-components";
 import UploadWidget from "./UploadWidget";
+import { TbPhotoCheck } from "react-icons/tb";
 
 const ForumPost = ({fetchSwitch, setFetchSwitch}) => {
     const {currentUser, setCurrentUser} = useContext(UserContext)
@@ -56,6 +57,9 @@ const ForumPost = ({fetchSwitch, setFetchSwitch}) => {
                     <Button type="submit">Post</Button>
                 </Form>
                 {!image && <UploadWidget setImage={setImage} />}
+                {image && <IconSpan>
+                    <TbPhotoCheck />
+                </IconSpan>}
             </PostContainer>
     )
 };
@@ -107,6 +111,15 @@ width: 50px;
 height: 50px;
 border-radius: 50%;
 margin-right: 10px;
+`
+
+const IconSpan = styled.span`
+display: flex;
+font-size: 32px;
+color: green;
+/* background-color: skyblue; */
+padding: 0px;
+margin: 0px;
 `
 
 export default ForumPost;

@@ -53,7 +53,7 @@ const RegisterForm = () => {
         event.preventDefault();
 
         try {
-            const formObject = { email: user.name, profPic: "./images/default_profile.png", ...formData }
+            const formObject = { email: user.name, profPic: "./images/blank-profile-picture-g21a760fbd_640.png", ...formData }
 
             const newUserResponse = await fetch(`/api/post-user`,
                 {   

@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { UserContext } from "../UserContext";
 import styled from "styled-components";
 
-const SinglePostFeed = ({fetchSwitch, setFetchSwitch, currentUser, postData}) => {
+const SinglePostFeed = ({fetchSwitch, setFetchSwitch, postData}) => {
     const [userObj, setUserObj] = useState({})
+    const { currentUser, setCurrentUser } = useContext(UserContext)
 
     useEffect(() => {
 
@@ -23,7 +25,7 @@ const SinglePostFeed = ({fetchSwitch, setFetchSwitch, currentUser, postData}) =>
         }
         getUser()
 
-    }, [])
+    }, [currentUser])
 
     const handleDelete = async (event) => {
 
@@ -31,9 +33,6 @@ const SinglePostFeed = ({fetchSwitch, setFetchSwitch, currentUser, postData}) =>
 
             const deletePostResponse = await fetch(`/api/delete-post/${postData._id}`, { method: "DELETE" });
             const parsedData = await deletePostResponse.json();
-
-            console.log("deletion id : " + postData._id)
-            console.log(parsedData)
 
             if (parsedData.status === 200) {
                 console.log(parsedData.message)
