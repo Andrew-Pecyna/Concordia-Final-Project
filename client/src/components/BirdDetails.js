@@ -15,7 +15,6 @@ const BirdDetails = () => {
     const { currentUser, setCurrentUser } = useContext(UserContext)
     const [resetKeyWord, setResetKeyWord] = useState(false)
     const birdName = useParams();
-    const [userObj, setUserObj] = useState({})
 
     const targetBird = birds.find(item => item.name === birdName.birdName)
 
@@ -36,8 +35,8 @@ const BirdDetails = () => {
                 })
                 const data = await addBirdResponse.json();
                 if (data.status === 200) {
-                    console.log(data.message)
-                    setCurrentUser({birds: [...birds, data.data] ,...currentUser})
+                    setCurrentUser(data.data)
+                    console.log(data.data)
                 }
 
         } catch (error) {
@@ -46,39 +45,16 @@ const BirdDetails = () => {
 
     }
 
-    useEffect(() => {
+    console.log(currentUser)
 
-        const getUser = async () => {
+    // const usersBirds = currentUser.birds
 
-            try {
-                const userResponse = await fetch(`/api/get-user/${currentUser.email}`, { method: "GET" });
-                const parsedData = await userResponse.json();
-                const userData = parsedData.data
-
-                if (userData) {
-                    setUserObj(userData)
-                }
-
-            } catch (error) {
-                console.log(error)
-            }
-        }
-        getUser()
-
-    }, [])
-
-    const usersBirds = userObj.birds
     let match = undefined
 
-    if (usersBirds) {
-        match = usersBirds.find(item => item.name === targetBird.name)
-        console.log(match)
+    if (currentUser) {
+        match = currentUser.birds.find(item => item.name === targetBird.name)
+        console.log("match : " + match)
     }
-
-    console.log(match)
-    
-    console.log(usersBirds)
-
 
     return (
         !targetBird ? <p>Loading...</p> :
@@ -109,7 +85,7 @@ const BirdDetails = () => {
                                 <Name>{targetBird.name}</Name>
                                 <P2>{targetBird.sciName}</P2>
                                 <P3>{targetBird.status}</P3>
-                                <span>
+                                {currentUser && <span>
                                     {!match
                                     ? <Button onClick={handleClick}>
                                         <UnseenIcon>
@@ -117,14 +93,14 @@ const BirdDetails = () => {
                                         </UnseenIcon>
                                         <P4>SEEN</P4>
                                     </Button>
-                                    : <span>
+                                    : <SeenBox>
                                         <SeenIcon>
                                             <BsFillCheckCircleFill />
                                         </SeenIcon>
                                         <P4>SEEN</P4>
-                                    </span>
+                                    </SeenBox>
                                     }
-                                </span>
+                                </span>}
                             </Content>
                         </TextWrapper>
                     </DetailsContainer>
@@ -146,12 +122,10 @@ const BirdDetails = () => {
 
 const Wrapper = styled.div`
 display: flex;
-/* justify-content: center; */
 width: 100vw;
 `
 
 const LeftContainer = styled.div`
-/* background-color: skyblue; */
 width: 250px;
 `
 
@@ -178,7 +152,6 @@ height: 100%;
 `
 
 const RightContainer = styled.div`
-/* width: 50%; */
 min-width: 550px;
 height: 100%;
 `
@@ -206,7 +179,6 @@ font-style: italic;
 
 const P3 = styled.p`
 font-size: 16px;
-/* background-color: white; */
 color: #538cc6;
 padding: 2px 5px;
 border-radius: 15px;
@@ -246,8 +218,16 @@ color: silver;
 }
 `
 
+const SeenBox = styled.span`
+display: flex;
+flex-direction: column;
+margin-left: 5px;
+margin-top: 2px;
+`
+
 const SeenIcon = styled.span`
 font-size: 28px;
+padding-left: 5px;
 color: green;
 `
 
@@ -256,8 +236,6 @@ background-image: url(${props => props.img});
 width: 100%;
 height: 100%;
 background-size: cover;
-/* background-repeat: no-repeat; */
-/* background-size: 100% 100%; */
 background-position: right 55% top 30%;
 `
 
@@ -281,7 +259,6 @@ display: flex;
 flex-direction: column;
 font-size: 22px;
 row-gap: 20px;
-/* background-color: skyblue; */
 margin-top: 30px;
 padding-left: 25px;
 width: 100%;
@@ -290,9 +267,7 @@ width: 100%;
 const StyledLink = styled(Link)`
 display: flex;
 column-gap: 5px;
-/* margin-left: 10px; */
 text-decoration: none;
-/* background-color: ${props => props.home ? '#d9e6f2' : 'white'}; */
 width: 115px;
 padding: 10px 0px 5px 12px;
 border-radius: 25px;

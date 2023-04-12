@@ -28,9 +28,10 @@ const UserHome = () => {
                 const feedResponse = await fetch(`/api/get-homefeed`, { method: "GET" });
                 const parsedData = await feedResponse.json();
                 const feedData = parsedData.data
+                const recentOrder = feedData.reverse()
 
                 console.log("getHomeFeed data is : " + feedData)
-                setHomePosts(feedData)
+                setHomePosts(recentOrder)
 
             } catch (error) {
                 console.log(error)
@@ -69,7 +70,7 @@ const UserHome = () => {
                     <FeedPost fetchSwitch={fetchSwitch} setFetchSwitch={setFetchSwitch} />
                     {homePosts.map((each) => {
                         return (
-                            <SinglePostFeed fetchSwitch={fetchSwitch} setFetchSwitch={setFetchSwitch} currentUser={currentUser} postData={each} key={each._id} />
+                            <SinglePostFeed fetchSwitch={fetchSwitch} setFetchSwitch={setFetchSwitch} postData={each} key={each._id} />
                         )
                     })}
                 </FeedContainer>

@@ -184,7 +184,6 @@ const getHomeFeed = async (request, response) => {
         const db = client.db("birdfeed_db");
         
         const postData = await db.collection("posts").find().toArray();
-        console.log("get all posts log : " + postData)
 
         postData ? response.status(200).json({ status: 200, data: postData }) :
         response.status(404).json({ status: 404, message: "Post data does not exist", data: undefined })
@@ -206,11 +205,6 @@ const deletePost = async (request, response) => {
         await client.connect();
         const db = client.db("birdfeed_db");
         const postsCollection = db.collection("posts");
-
-        // const deletePostData = request.body
-        // console.log(request.body)
-
-        console.log("query is : " + request.params.post_id) // this is the one
 
         const query = { _id: request.params.post_id }
 
@@ -237,11 +231,6 @@ const deleteForumPost = async (request, response) => {
         await client.connect();
         const db = client.db("birdfeed_db");
         const forumCollection = db.collection("forum");
-
-        // const deletePostData = request.body
-        // console.log(request.body)
-
-        console.log("query is : " + request.params.post_id) // this is the one
 
         const query = { _id: request.params.post_id }
 
@@ -274,9 +263,6 @@ const getUserFeed = async (request, response) => {
         if (request.query.userName) {
             mongoQuery["author"] = request.params.userName;
         }
-        // const companies = await companiesCollection.find(mongoQuery).toArray();
-
-        console.log("I WANT TO SEE THIS ONE" + mongoQuery.data)
         
         const userPostData = await postsCollection.find({ author: request.params.userName }).toArray();
         console.log("get all posts log : " + userPostData)
@@ -307,8 +293,9 @@ const changePhoto = async (request, response) => {
         console.log("data test 1" + photoData.image)
 
         await db.collection("users").updateOne({userName: photoData.userName}, { $set: {profPic: photoData.image}});
+        const user = await db.collection("users").findOne({userName: photoData.userName});
 
-        return response.status(200).json({ status: 200, message: "Photo was updated", data: photoData.image });
+        return response.status(200).json({ status: 200, message: "Photo was updated", data: user });
 
     } catch (error) {
         console.log(error.message)
@@ -331,8 +318,9 @@ const addBird = async (request, response) => {
         const userData = request.body.user
 
         await db.collection("users").updateOne({userName: userData}, {$push: {birds: birdData}})
+        const user = await db.collection("users").findOne({userName: userData});
 
-        return response.status(200).json({ status: 200, message: "Bird added to birds array in user object.", data: birdData.bird });
+        return response.status(200).json({ status: 200, message: "Bird added to birds array in user object.", data: user });
 
     } catch (error) {
         console.log(error.message)

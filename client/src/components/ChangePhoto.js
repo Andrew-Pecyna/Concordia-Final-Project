@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../UserContext";
 import ProfPicWidget from "./ProfPicWidget";
 
-const ChangePhoto = ({setProfImage, picSwitch, setPicSwitch}) => {
+const ChangePhoto = ({picSwitch, setPicSwitch}) => {
     const {currentUser, setCurrentUser} = useContext(UserContext)
     const [image, setImage] = useState("")
 
@@ -24,9 +24,7 @@ const ChangePhoto = ({setProfImage, picSwitch, setPicSwitch}) => {
                 })
                 const data = await picChangeResponse.json();
                 if (data.status === 200) {
-                    console.log(data.message)
-                    setProfImage(data.data)
-                    
+                    setCurrentUser(data.data) 
                 }
 
             setImage("")
@@ -37,8 +35,6 @@ const ChangePhoto = ({setProfImage, picSwitch, setPicSwitch}) => {
         }
 
     }
-
-    console.log("IMAGE is : " + image)
 
     return (
         <div>
@@ -57,13 +53,19 @@ height: 22px;
 font-size: 16px;
 font-weight: 200;
 border: none;
-padding: 0px 0px;
-border-bottom: 2px solid black;
-/* border-radius: 50%; */
+padding: 0px 2px;
+border: 1px solid black;
+border-radius: 15px;
 background-color: transparent;
 
 &:hover {
-    font-weight: bold;
+    background-color: black;
+    color: white;
+    border: none;
+}
+
+&:active {
+    transform: scale(0.97);
 }
 `
 
