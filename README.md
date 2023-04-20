@@ -8,7 +8,7 @@
 
 - Bird Lookup search bar allowing users to explore species database
 - Community Forum section where users can interact - sharing photos and information
-- Profile space with home and profile feeds, users may customize and build their own page
+- Profile space with home and profile feeds, users may build and customize their own page
 - Users are able to mark birds they have seen, adding them to their own bird collection
   
 ## APIs
