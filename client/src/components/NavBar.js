@@ -49,7 +49,7 @@ const NavBar = ({resetKeyWord}) => {
                 </TitleBox>
                 <NavContent>
                     <NavItem to="/forum">Forum</NavItem>
-                    <ExploreLink to="/birds">Explore Birds</ExploreLink>
+                    <ExploreLink to="">Explore Birds</ExploreLink>
                     <SearchBar keyWord={keyWord} onChange={updateKeyword}/>
                     <SearchWrapper>
                         {filteredSearch && <SearchList filteredSearch={filteredSearch}/>}
