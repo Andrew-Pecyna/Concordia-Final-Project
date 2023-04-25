@@ -2,7 +2,7 @@
 
 # BirdFeed
 
-<p> BirdFeed is a social-media like application where anyone with an interest in birds can create an account to look up birds, share photos with friends, and collaborate within the community to identify species! <p>
+<p> BirdFeed is a social media application where anyone with an interest in birds can create an account to look up different species, share photos with friends, and collaborate within the community to identify birds! <p>
 
 ## Features
 
