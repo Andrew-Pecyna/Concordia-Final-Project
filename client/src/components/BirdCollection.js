@@ -136,10 +136,9 @@ border: 1px solid #E8E8E8;
 `
 
 const Thumbnail = styled.div`
-border: 2px solid black;
-height: 270px;
+height: 260px;
 background-color: white;
-overflow: scroll;
+padding-bottom: 5px;
 `
 
 const Img = styled.img`
