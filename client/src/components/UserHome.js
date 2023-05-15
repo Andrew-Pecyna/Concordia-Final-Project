@@ -39,7 +39,7 @@ const UserHome = () => {
         getHomePosts()
 
     }, [fetchSwitch])
-
+    
 
     return (
         !currentUser ? <p>Loading...</p> :

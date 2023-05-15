@@ -47,6 +47,7 @@ const SinglePostForum = ({fetchSwitch, setFetchSwitch, currentUser, postData}) =
 
     }
 
+
     return (
         <Container>
             <ProfBox>
@@ -56,7 +57,7 @@ const SinglePostForum = ({fetchSwitch, setFetchSwitch, currentUser, postData}) =
                 <span>
                     <InnerBox>
                         <Author>{postData.author}</Author>
-                        {currentUser && <Delete onClick={handleDelete} >x</Delete>}        
+                        {currentUser.userName === postData.author && <Delete onClick={handleDelete} >x</Delete>}        
                     </InnerBox>
                     <Text>{postData.text}</Text>
                 </span>
@@ -85,7 +86,7 @@ border-radius: 50%;
 
 const OuterBox = styled.div`
 width: 100%;
-overflow: scroll;
+/* overflow: scroll; */
 `
 
 const InnerBox = styled.span`
@@ -126,8 +127,8 @@ const Text = styled.p`
 font-size: 16px;
 font-weight: 400;
 font-family: 'Helvetica', Arial, Helvetica, sans-serif;
-padding: 5px 5px 5px 0px;
-overflow: scroll;
+padding: 5px 15px 5px 0px;
+/* overflow: scroll; */
 `
 
 const Img = styled.img`

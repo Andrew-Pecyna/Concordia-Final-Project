@@ -21,7 +21,6 @@ const Forum = () => {
                 const forumData = parsedData.data
                 const recentOrder = forumData.reverse()
 
-                console.log("getForum data is : " + forumData)
                 setForumPosts(recentOrder)
 
             } catch (error) {
@@ -31,6 +30,8 @@ const Forum = () => {
         getForumPosts()
 
     }, [fetchSwitch])
+
+    console.log(currentUser)
 
     return(
         forumPosts === 0 ? <p>Loading...</p> :

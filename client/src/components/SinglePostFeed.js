@@ -55,7 +55,7 @@ const SinglePostFeed = ({fetchSwitch, setFetchSwitch, postData}) => {
                 <span>
                     <InnerBox>
                         <Author>{postData.author}</Author>
-                        <Delete onClick={handleDelete} >x</Delete>        
+                        {currentUser.userName === postData.author && <Delete onClick={handleDelete} >x</Delete>}       
                     </InnerBox>
                     <Text>{postData.text}</Text>
                 </span>
