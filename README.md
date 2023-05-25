@@ -20,6 +20,9 @@
 ### Landing Page
   
 <img width="1440" alt="BirdFeed_screenshot" src="https://user-images.githubusercontent.com/122415068/231347985-6c1b8834-7d24-4d0a-89d5-bd6d29354be5.png">
+  
+<img width="1421" alt="Screen Shot 2023-05-25 at 4 20 01 PM" src="https://github.com/Andrew-Pecyna/Concordia-Final-Project/assets/122415068/8869e96d-e439-47a0-b024-6d4eb720a1a2">
+
 
 ## Set-up
 
