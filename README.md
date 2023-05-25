@@ -32,7 +32,7 @@
   
 ### The Backend
 
-1. Open a terminal in VSCode
+1. Open *another* terminal in VSCode
 2. Enter `cd server`
 3. Enter `yarn install`
 4. Enter `yarn start` to start the backend environment 
