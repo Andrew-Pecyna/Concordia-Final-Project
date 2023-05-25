@@ -20,3 +20,19 @@
 ### Landing Page
   
 <img width="1440" alt="BirdFeed_screenshot" src="https://user-images.githubusercontent.com/122415068/231347985-6c1b8834-7d24-4d0a-89d5-bd6d29354be5.png">
+
+## Set-up
+
+### The Frontend
+
+1. Open a terminal in VSCode
+2. Enter `cd client`
+3. Enter `yarn install`
+4. Enter `yarn start` to start and open the frontend environment
+  
+### The Backend
+
+1. Open a terminal in VSCode
+2. Enter `cd server`
+3. Enter `yarn install`
+4. Enter `yarn start` to start the backend environment 
