@@ -20,19 +20,22 @@
 ### Landing Page
 <kbd>
 <img width="1421" alt="Screen Shot 2023-05-25 at 4 20 01 PM" src="https://github.com/Andrew-Pecyna/Concordia-Final-Project/assets/122415068/8869e96d-e439-47a0-b024-6d4eb720a1a2" style="border:1px solid black">
-<kbd/>
+</kbd>
   
 ### Species Look-up
-  
+<kbd>
 <img width="1424" alt="Screen Shot 2023-05-25 at 4 34 56 PM" src="https://github.com/Andrew-Pecyna/Concordia-Final-Project/assets/122415068/0a7fae6b-735e-4994-99a7-dc4f68c9779e">
+</kbd>
   
 ### Profile Page
-  
+<kbd>  
 <img width="1425" alt="Screen Shot 2023-05-25 at 4 28 52 PM" src="https://github.com/Andrew-Pecyna/Concordia-Final-Project/assets/122415068/a06666dc-b11b-4ea7-9e30-c463d19f2c83">
+</kbd>
   
 ### Bird Collection
-  
+<kbd>  
 <img width="1425" alt="Screen Shot 2023-05-25 at 4 39 22 PM" src="https://github.com/Andrew-Pecyna/Concordia-Final-Project/assets/122415068/e11755ab-fe6f-4ddd-80a7-4350c689e2fc">
+</kbd>
 
 ## Installation
 
