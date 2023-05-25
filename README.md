@@ -19,12 +19,21 @@
   
 ### Landing Page
   
-<img width="1440" alt="BirdFeed_screenshot" src="https://user-images.githubusercontent.com/122415068/231347985-6c1b8834-7d24-4d0a-89d5-bd6d29354be5.png">
-  
 <img width="1421" alt="Screen Shot 2023-05-25 at 4 20 01 PM" src="https://github.com/Andrew-Pecyna/Concordia-Final-Project/assets/122415068/8869e96d-e439-47a0-b024-6d4eb720a1a2">
+  
+### Species Look-up
+  
+<img width="1424" alt="Screen Shot 2023-05-25 at 4 34 56 PM" src="https://github.com/Andrew-Pecyna/Concordia-Final-Project/assets/122415068/0a7fae6b-735e-4994-99a7-dc4f68c9779e">
+  
+### Profile Page
+  
+<img width="1425" alt="Screen Shot 2023-05-25 at 4 28 52 PM" src="https://github.com/Andrew-Pecyna/Concordia-Final-Project/assets/122415068/a06666dc-b11b-4ea7-9e30-c463d19f2c83">
+  
+### Bird Collection
+  
+<img width="1425" alt="Screen Shot 2023-05-25 at 4 39 22 PM" src="https://github.com/Andrew-Pecyna/Concordia-Final-Project/assets/122415068/e11755ab-fe6f-4ddd-80a7-4350c689e2fc">
 
-
-## Set-up
+## Installation
 
 ### The Frontend
 
