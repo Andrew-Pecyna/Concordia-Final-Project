@@ -18,8 +18,9 @@
 - Auth0 - user authentication
   
 ### Landing Page
-  
+<kbd>
 <img width="1421" alt="Screen Shot 2023-05-25 at 4 20 01 PM" src="https://github.com/Andrew-Pecyna/Concordia-Final-Project/assets/122415068/8869e96d-e439-47a0-b024-6d4eb720a1a2" style="border:1px solid black">
+<kbd/>
   
 ### Species Look-up
   
