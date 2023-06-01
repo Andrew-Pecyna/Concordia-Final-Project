@@ -57,7 +57,10 @@ const SinglePostForum = ({fetchSwitch, setFetchSwitch, currentUser, postData}) =
                 <span>
                     <InnerBox>
                         <Author>{postData.author}</Author>
-                        {currentUser.userName === postData.author && <Delete onClick={handleDelete} >x</Delete>}        
+                        {!currentUser ? <span></span>
+                        : currentUser.userName === postData.author ? <Delete onClick={handleDelete} >x</Delete>
+                        : <span></span>
+                        }
                     </InnerBox>
                     <Text>{postData.text}</Text>
                 </span>
